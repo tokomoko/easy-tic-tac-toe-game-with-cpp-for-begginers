@@ -1,6 +1,7 @@
 #include<iostream>
 #include<time.h>
 
+//GLOBALS
 char player = 'X';
 char cpu = 'O';
 bool game_over = false;
@@ -8,6 +9,7 @@ bool diagonal_winner;
 bool horizontal_winner;
 bool vertical_winner;
 
+//FUNCTIONS
 void display_board(char* _board, unsigned int board_size = 9);
 void run_game(char* _board, unsigned int board_size = 9);
 void check_winner(char* _board);
@@ -18,6 +20,7 @@ void check_tie(char* _board, unsigned int board_size = 9);
 void restart(char* _board, unsigned int board_size = 9);
 void try_again_inp(char* _board, bool try_again);
 
+//MAIN
 int main() {
     std::srand(time(0));
 
@@ -32,12 +35,15 @@ int main() {
     return 0;
 }
 
-
+//THIS WILL DISPLAYS OUR TIC-TAC-TOE BOARD
 void display_board(char* _board, unsigned int board_size) {
     std::system("clear");
-
-    std::cout << "1 | 2 | 3\n--+---+---\n4 | 5 | 6\n--+---+---\n7 | 8 | 9\n\n";
-
+    
+    std::cout << "1 | 2 | 3\n--+---+---\n4 | 5 | 6\n--+---+---\n7 | 8 | 9\n\n";     //THIS WILL WRITE   //1 | 2 | 3
+                                                                                                        //--+---+---
+                                                                                                        //4 | 5 | 6
+                                                                                                        //--+---+---
+                                                                                                        //7 | 8 | 9
     for(int i = 0; i < board_size; i++) {
 
         if((i + 1) % 3 == 0) {
@@ -54,6 +60,7 @@ void display_board(char* _board, unsigned int board_size) {
 
 }
 
+//GAME'S MAIN LOOP
 void run_game(char* _board, unsigned int board_size) {
     short index;
 
@@ -95,6 +102,7 @@ void run_game(char* _board, unsigned int board_size) {
 
 }
 
+//CHECKS IF WINNER EXISTS
 void check_winner(char* _board) {
     check_diagonal(_board);
     check_horizontal(_board);
@@ -202,6 +210,7 @@ void check_tie(char* _board, unsigned int board_size) {
     }
 }
 
+//RESTARTS EVERYTHING
 void restart(char* _board, unsigned int board_size) {
     for(int i = 0; i < board_size; i++) {
         _board[i] = '-';
@@ -211,7 +220,7 @@ void restart(char* _board, unsigned int board_size) {
     bool vertical_winner = false;
     game_over = false;
 }
-
+//THIS WILL TELL USERS IF HE/SHE WANTS TO CONTINUE OR EXIT
 void try_again_inp(char* _board,bool try_again) {
     std::cout << "input 1 to continue or 0 to exit" << std::endl;
     std::cin >> try_again;
